@@ -2,15 +2,20 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useTRPC } from '../providers/trpc-provider'
+import { EventCard } from '@/app/entities/event'
 
 export function ClientPage() {
   const trpc = useTRPC()
 
-  const { data } = useSuspenseQuery(trpc.hello.queryOptions({ text: 'name' }))
+  const { data } = useSuspenseQuery(trpc.event.findMany.queryOptions())
 
   return (
-    <pre>
-      {data.greeting}, {data.date.toDateString()}
-    </pre>
+    <ul>
+      {data.map((event) => (
+        <li key={event.id}>
+          <EventCard {...event} />
+        </li>
+      ))}
+    </ul>
   )
 }
