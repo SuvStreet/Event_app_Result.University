@@ -1,7 +1,19 @@
 import prisma from '@/server/prisma'
 
-export default async function Home() {
-  const user = await prisma.user.findMany()
+import { HydrateClient, prefetch, trpc } from '@/server/trpc/server'
+import { Suspense } from 'react'
+import { ClientPage } from './components/client-page'
 
-  return <pre>{JSON.stringify(user, null, 2)}</pre>
+export default async function Home() {
+  prefetch(trpc.hello.queryOptions({ text: 'name' }))
+
+  // const user = await prisma.user.findMany()
+
+  return (
+    <HydrateClient>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ClientPage />
+        </Suspense>
+    </HydrateClient>
+  )
 }
