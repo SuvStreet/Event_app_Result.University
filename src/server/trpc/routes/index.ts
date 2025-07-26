@@ -1,8 +1,8 @@
 import { z } from 'zod'
-import { procedure, router } from '../trpc'
+import { baseProcedure, createTRPCRouter } from '../init'
 
-export const appRouter = router({
-  hello: procedure
+export const appRouter = createTRPCRouter({
+  hello: baseProcedure
     .input(
       z.object({
         text: z.string(),
@@ -11,6 +11,7 @@ export const appRouter = router({
     .query((opts) => {
       return {
         greeting: `hello ${opts.input.text}`,
+        date: new Date(),
       }
     }),
 })
