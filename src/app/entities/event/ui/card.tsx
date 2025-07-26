@@ -1,0 +1,51 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+type EventCardProps = {
+  id: string
+  title: string
+  description: string | null
+  date: Date
+}
+
+export function EventCard({ id, title, description, date }: EventCardProps) {
+  return (
+    <div className="flex font-sans shadow-xl">
+      <div className="flex-none w-48 relative">
+        <Image
+          src="/poster/poster.jpeg"
+          alt="poster"
+          className="w-24 h-24 object-cover rounded-xl mr-4"
+          fill
+        />
+      </div>
+      <div className="flex-auto p-6">
+        <div className="flex flex-wrap -mt-6 pt-6 pb-6">
+          <h1 className="flex-auto text-lg font-semibold text-amber-50">
+            {title}
+          </h1>
+          <div className="text-lg font-semibold text-zinc-500">
+            {date.toLocaleDateString()}
+          </div>
+          <div className="w-full flex-none text-sm font-medium text-zinc-500 mt-2">
+            {description}
+          </div>
+        </div>
+
+        <div className="flex space-x-4 text-sm font-medium">
+          <div className="flex-auto flex space-x-4">
+            <button className="h-10 px-6 font-semibold rounded-md bg-gray-600 text-white">
+              Участвовать
+            </button>
+          </div>
+          <Link
+            href={`{/events/${id}`}
+            className="h-10 px-6 font-semibold rounded-md border border-gray-200 text-green-400 align-middle flex items-center"
+          >
+            Подробнее
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}

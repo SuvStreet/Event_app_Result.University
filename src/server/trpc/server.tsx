@@ -20,6 +20,7 @@ export const trpc = createTRPCOptionsProxy({
 
 export function HydrateClient(props: { children: React.ReactNode }) {
   const queryClient = getQueryClient()
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       {props.children}
@@ -27,7 +28,7 @@ export function HydrateClient(props: { children: React.ReactNode }) {
   )
 }
 
-export function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
+export async function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
   queryOptions: T
 ) {
   const queryClient = getQueryClient()
