@@ -17,6 +17,8 @@ export function EventCard({ id, title, description, date }: EventCardProps) {
           alt="poster"
           className="w-24 h-24 object-cover rounded-xl mr-4"
           fill
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          priority
         />
       </div>
       <div className="flex-auto p-6">

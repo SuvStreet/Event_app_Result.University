@@ -1,11 +1,9 @@
-'use client'
+import { EventsClient } from './components/events-client'
 
-import { CreateEventForm } from '@/features/create-event'
-
-export default function CreateEvent() {
+export default function Events() {
   return (
     <div className="mx-auto max-w-4xl">
-      <CreateEventForm />
+      <EventsClient />
     </div>
   )
 }
