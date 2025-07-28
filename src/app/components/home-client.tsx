@@ -1,7 +1,7 @@
 'use client'
 
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { useTRPC } from '../providers/trpc-provider'
+import { useTRPC } from '@/app/providers/trpc-provider'
 import { EventCard } from '@/app/entities/event'
 
 export function HomeClient() {
