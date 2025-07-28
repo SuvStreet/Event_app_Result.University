@@ -7,8 +7,10 @@ import { createTRPCContext } from '@trpc/tanstack-react-query'
 import { useState } from 'react'
 import { makeQueryClient } from '@/shared/lib/react-query/query-client'
 import type { AppRouter } from '@/server/trpc/routes'
+import SuperJSON from 'superjson'
 
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>()
+
 let browserQueryClient: QueryClient
 
 function getQueryClient() {
@@ -39,10 +41,12 @@ export function TRPCReactProvider(
   }>
 ) {
   const queryClient = getQueryClient()
+
   const [trpcClient] = useState(() =>
     createTRPCClient<AppRouter>({
       links: [
         httpBatchLink({
+          transformer: SuperJSON,
           url: getUrl(),
         }),
       ],

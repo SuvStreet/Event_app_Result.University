@@ -32,7 +32,7 @@ model Event {
   updatedAt DateTime @updatedAt
 
   title       String
-  description String
+  description String?
   date        DateTime
 
   authorId       String

@@ -23,7 +23,7 @@ export function EventCard({ id, title, description, date }: EventCardProps) {
       </div>
       <div className="flex-auto p-6">
         <div className="flex flex-wrap -mt-6 pt-6 pb-6">
-          <h1 className="flex-auto text-lg font-semibold text-amber-50">
+          <h1 className="flex-auto text-lg font-semibold text-amber-950-50">
             {title}
           </h1>
           <div className="text-lg font-semibold text-zinc-500">
