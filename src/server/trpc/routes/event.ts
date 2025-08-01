@@ -1,6 +1,6 @@
 import prisma from '@/server/prisma'
 import { baseProcedure, createTRPCRouter } from '@/server/trpc/init'
-import { CreateEventSchema } from '@/shared/lib/react-query/api/shema'
+import { CreateEventSchema } from '@/shared/api/schema'
 
 export const eventRouter = createTRPCRouter({
   findMany: baseProcedure.query(() => {

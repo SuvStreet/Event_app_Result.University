@@ -8,7 +8,7 @@ type EventCardProps = {
   date: Date
 }
 
-export function EventCard({ id, title, description, date }: EventCardProps) {
+export function Card({ id, title, description, date }: EventCardProps) {
   return (
     <div className="flex font-sans shadow-xl">
       <div className="flex-none w-48 relative">
@@ -17,7 +17,7 @@ export function EventCard({ id, title, description, date }: EventCardProps) {
           alt="poster"
           className="w-24 h-24 object-cover rounded-xl mr-4"
           fill
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority
         />
       </div>

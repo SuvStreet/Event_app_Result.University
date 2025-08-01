@@ -1,10 +1,10 @@
 'use client'
 
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { useTRPC } from '@/app/providers/trpc-provider'
-import { EventCard } from '@/app/entities/event'
+import { useTRPC } from '@/shared/provides'
+import { Card } from './components/card'
 
-export function HomeClient() {
+export function HomeLayout() {
   const trpc = useTRPC()
 
   const { data } = useSuspenseQuery(trpc.event.findMany.queryOptions())
@@ -13,7 +13,7 @@ export function HomeClient() {
     <ul>
       {data.map((event) => (
         <li key={event.id}>
-          <EventCard {...event} />
+          <Card {...event} />
         </li>
       ))}
     </ul>
