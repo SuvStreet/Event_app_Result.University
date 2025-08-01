@@ -1,4 +1,4 @@
-import { CreateEventSchema } from '@/shared/lib/react-query/api/shema'
+import { CreateEventSchema } from '@/shared/api'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 

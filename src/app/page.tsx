@@ -1,14 +1,14 @@
-import { HydrateClient, prefetch, trpc } from '@/server/trpc/server'
 import { Suspense } from 'react'
-import { HomeClient } from './components/home-client'
+import { HydrateClient, prefetch, trpc } from '@/server/trpc/server'
+import { HomeLayout } from '@/features'
 
 export default function Home() {
   prefetch(trpc.event.findMany.queryOptions())
 
   return (
     <HydrateClient>
-      <Suspense fallback={<div>Loading...</div>}>
-        <HomeClient />
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <HomeLayout />
       </Suspense>
     </HydrateClient>
   )
