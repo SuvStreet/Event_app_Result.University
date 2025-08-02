@@ -12,7 +12,7 @@ export function HomeLayout() {
   return (
     <ul>
       {data.map((event) => (
-        <li key={event.id}>
+        <li className="my-4 mx-4" key={event.id}>
           <Card {...event} />
         </li>
       ))}
