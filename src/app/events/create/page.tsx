@@ -2,7 +2,7 @@ import { NewEventLayout } from '@/features'
 
 export default function Events() {
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="flex items-center justify-center h-screen">
       <NewEventLayout />
     </div>
   )

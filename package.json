@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@prisma/client": "^6.12.0",
     "@tanstack/react-query": "^5.83.0",
     "@trpc/client": "^11.4.3",
@@ -22,7 +23,7 @@
     "react-hook-form": "^7.61.1",
     "server-only": "^0.0.1",
     "superjson": "^2.2.2",
-    "zod": "^4.0.10"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
