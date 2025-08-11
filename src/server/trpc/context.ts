@@ -4,8 +4,6 @@ import { getServerSession } from 'next-auth'
 export const createContext = async () => {
   const session = await getServerSession(authOptions)
 
-  console.log('session :>> ', session)
-
   return {
     user: session?.user,
   }

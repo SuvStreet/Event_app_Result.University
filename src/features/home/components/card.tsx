@@ -1,14 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ReactNode } from 'react'
 
 type EventCardProps = {
   id: string
   title: string
   description: string | null
   date: Date
+  action: ReactNode
 }
 
-export function Card({ id, title, description, date }: EventCardProps) {
+export function Card({ id, title, description, date, action }: EventCardProps) {
   return (
     <div className="flex font-sans shadow-xl">
       <div className="flex-none w-48 relative">
@@ -36,9 +38,7 @@ export function Card({ id, title, description, date }: EventCardProps) {
 
         <div className="flex space-x-4 text-sm font-medium">
           <div className="flex-auto flex space-x-4">
-            <button className="h-10 px-6 font-semibold rounded-md bg-gray-600 text-white">
-              Участвовать
-            </button>
+            {action}
           </div>
           <Link
             href={`{/events/${id}`}
