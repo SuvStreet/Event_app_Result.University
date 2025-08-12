@@ -10,18 +10,28 @@ export const eventRouter = createTRPCRouter({
   findMany: baseProcedure.query(() => {
     return prisma.event.findMany()
   }),
-  findUnique: baseProcedure.input(FindUniqueEventSchema).query(({ input }) => {
-    return prisma.event.findUnique({
-      where: input,
-      include: {
-        participations: {
-          include: {
-            user: true,
+  findUnique: baseProcedure
+    .input(FindUniqueEventSchema)
+    .use(isAuth)
+    .query(({ input }) => {
+      return prisma.event.findUnique({
+        where: input,
+        select: {
+          title: true,
+          description: true,
+          date: true,
+          participations: {
+            select: {
+              user: {
+                select: {
+                  name: true,
+                },
+              },
+            },
           },
         },
-      },
-    })
-  }),
+      })
+    }),
   create: baseProcedure
     .input(CreateEventSchema)
     .use(isAuth)
