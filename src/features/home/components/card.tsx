@@ -41,7 +41,7 @@ export function Card({ id, title, description, date, action }: EventCardProps) {
             {action}
           </div>
           <Link
-            href={`{/events/${id}`}
+            href={`/events/${id}`}
             className="h-10 px-6 font-semibold rounded-md border border-gray-200 text-green-400 align-middle flex items-center"
           >
             Подробнее

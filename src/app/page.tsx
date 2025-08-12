@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { HydrateClient, prefetch, trpc } from '@/server/trpc/server'
 import { HomeLayout } from '@/features'
 
@@ -7,9 +6,7 @@ export default function Home() {
 
   return (
     <HydrateClient>
-      <Suspense fallback={<div>Загрузка...</div>}>
         <HomeLayout />
-      </Suspense>
     </HydrateClient>
   )
 }
