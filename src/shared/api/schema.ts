@@ -9,3 +9,7 @@ export const CreateEventSchema = z.object({
 export const JoinEventSchema = z.object({
   id: z.string(),
 })
+
+export const FindUniqueEventSchema = z.object({
+  id: z.string(),
+})

@@ -1,10 +1,26 @@
 import prisma from '@/server/prisma'
 import { baseProcedure, createTRPCRouter, isAuth } from '@/server/trpc/init'
-import { CreateEventSchema, JoinEventSchema } from '@/shared/api/schema'
+import {
+  CreateEventSchema,
+  FindUniqueEventSchema,
+  JoinEventSchema,
+} from '@/shared/api/schema'
 
 export const eventRouter = createTRPCRouter({
   findMany: baseProcedure.query(() => {
     return prisma.event.findMany()
+  }),
+  findUnique: baseProcedure.input(FindUniqueEventSchema).query(({ input }) => {
+    return prisma.event.findUnique({
+      where: input,
+      include: {
+        participations: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    })
   }),
   create: baseProcedure
     .input(CreateEventSchema)

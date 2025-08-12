@@ -34,8 +34,8 @@ export async function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
 ) {
   const queryClient = getQueryClient()
   if (queryOptions.queryKey[1]?.type === 'infinite') {
-    void queryClient.prefetchInfiniteQuery(queryOptions as any)
+    await queryClient.prefetchInfiniteQuery(queryOptions as any)
   } else {
-    void queryClient.prefetchQuery(queryOptions)
+    await queryClient.prefetchQuery(queryOptions)
   }
 }
