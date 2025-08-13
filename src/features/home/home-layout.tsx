@@ -17,9 +17,11 @@ export function HomeLayout() {
           <Card
             {...event}
             action={
-              !event.isJoined && (
-                <JoinEventButton onSuccess={refetch} eventId={event.id} />
-              )
+              <JoinEventButton
+                action={event.isJoined ? 'Отписаться' : 'Участвовать'}
+                onSuccess={refetch}
+                eventId={event.id}
+              />
             }
           />
         </li>

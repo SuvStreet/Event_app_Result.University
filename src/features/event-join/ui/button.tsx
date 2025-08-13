@@ -6,26 +6,41 @@ import { useMutation } from '@tanstack/react-query'
 type JointEventButtonProps = {
   eventId: string
   onSuccess?: () => void
+  action: string
 }
 
 export const JoinEventButton = ({
   eventId,
   onSuccess,
+  action,
 }: JointEventButtonProps) => {
   const trpc = useTRPC()
 
-  const { mutate } = useMutation(trpc.event.join.mutationOptions({ onSuccess }))
+  const joinMutation = useMutation(
+    trpc.event.join.mutationOptions({
+      onSuccess,
+    })
+  )
+  const leaveMutation = useMutation(
+    trpc.event.leave.mutationOptions({ onSuccess })
+  )
 
   const handleClick = () => {
-    mutate({ id: eventId })
+    if (action === 'Участвовать') joinMutation.mutate({ id: eventId })
+    else leaveMutation.mutate({ id: eventId })
   }
+
+  const isLoading = joinMutation.isPending || leaveMutation.isPending
 
   return (
     <button
-      className="h-10 px-6 font-semibold rounded-md bg-gray-600 text-white cursor-pointer"
+      className={`h-10 px-6 font-semibold rounded-md  text-white cursor-pointer ${
+        action === 'Участвовать' ? 'bg-amber-950' : 'bg-red-500'
+      }`}
       onClick={handleClick}
+      disabled={isLoading}
     >
-      Участвовать
+      {isLoading ? 'Загрузка...' : action}
     </button>
   )
 }

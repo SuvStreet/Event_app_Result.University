@@ -63,4 +63,15 @@ export const eventRouter = createTRPCRouter({
         },
       })
     }),
+  leave: baseProcedure
+    .input(JoinEventSchema)
+    .use(isAuth)
+    .mutation(({ input, ctx: { user } }) => {
+      return prisma.participation.deleteMany({
+        where: {
+          eventId: input.id,
+          userId: user.id,
+        },
+      })
+    }),
 })
