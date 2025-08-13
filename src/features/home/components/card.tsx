@@ -37,7 +37,7 @@ export function Card({ id, title, description, date, action }: EventCardProps) {
         </div>
 
         <div className="flex space-x-4 text-sm font-medium">
-          <div className="flex-auto flex space-x-4">
+          <div className="flex space-x-4">
             {action}
           </div>
           <Link
