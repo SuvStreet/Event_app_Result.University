@@ -2,14 +2,14 @@
 
 import { EventDetailCard } from '@/entities'
 import { useTRPC } from '@/shared/provides'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
 
 export const EventDetailLayout = () => {
   const params = useParams()
   const trpc = useTRPC()
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading } = useSuspenseQuery(
     trpc.event.findUnique.queryOptions({ id: String(params.id) })
   )
 
