@@ -8,13 +8,20 @@ import { JoinEventButton } from '@/features/event-join'
 export function HomeLayout() {
   const trpc = useTRPC()
 
-  const { data } = useSuspenseQuery(trpc.event.findMany.queryOptions())
+  const { data, refetch } = useSuspenseQuery(trpc.event.findMany.queryOptions())
 
   return (
     <ul>
       {data.map((event) => (
         <li className="my-4 mx-4" key={event.id}>
-          <Card {...event} action={<JoinEventButton eventId={event.id} />} />
+          <Card
+            {...event}
+            action={
+              !event.isJoined && (
+                <JoinEventButton onSuccess={refetch} eventId={event.id} />
+              )
+            }
+          />
         </li>
       ))}
     </ul>
