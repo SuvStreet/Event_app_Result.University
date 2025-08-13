@@ -5,12 +5,16 @@ import { useMutation } from '@tanstack/react-query'
 
 type JointEventButtonProps = {
   eventId: string
+  onSuccess?: () => void
 }
 
-export const JoinEventButton = ({ eventId }: JointEventButtonProps) => {
+export const JoinEventButton = ({
+  eventId,
+  onSuccess,
+}: JointEventButtonProps) => {
   const trpc = useTRPC()
 
-  const { mutate } = useMutation(trpc.event.join.mutationOptions())
+  const { mutate } = useMutation(trpc.event.join.mutationOptions({ onSuccess }))
 
   const handleClick = () => {
     mutate({ id: eventId })
