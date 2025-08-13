@@ -12,7 +12,6 @@ export const EventDetailCard = ({
     <div className="bg-white shadow-lg rounded-2xl p-6 mx-4">
       <h2 className="text-2xl font-bold mb-6">Информация о событии</h2>
 
-      {/* Название */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">
           Название события:
@@ -22,7 +21,6 @@ export const EventDetailCard = ({
         </div>
       </div>
 
-      {/* Описание */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">
           Описание:
@@ -32,7 +30,6 @@ export const EventDetailCard = ({
         </div>
       </div>
 
-      {/* Дата проведения */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">
           Дата проведения:
@@ -42,7 +39,6 @@ export const EventDetailCard = ({
         </div>
       </div>
 
-      {/* Участники */}
       <div>
         <label className="block text-sm font-medium text-gray-600">
           Участники:
