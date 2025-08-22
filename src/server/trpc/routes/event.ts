@@ -21,7 +21,6 @@ export const eventRouter = createTRPCRouter({
   }),
   findUnique: baseProcedure
     .input(FindUniqueEventSchema)
-    .use(isAuth)
     .query(({ input }) => {
       return prisma.event.findUnique({
         where: input,

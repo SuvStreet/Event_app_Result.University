@@ -4,8 +4,10 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useTRPC } from '@/shared/provides'
 import { Card } from './components/card'
 import { JoinEventButton } from '@/features/event-join'
+import { useSession } from 'next-auth/react'
 
 export function HomeLayout() {
+  const { data: session } = useSession()
   const trpc = useTRPC()
   const { data, refetch } = useSuspenseQuery(trpc.event.findMany.queryOptions())
 
@@ -17,11 +19,13 @@ export function HomeLayout() {
             <Card
               {...event}
               action={
-                <JoinEventButton
-                  action={event.isJoined ? 'Отписаться' : 'Участвовать'}
-                  onSuccess={refetch}
-                  eventId={event.id}
-                />
+                session?.user && (
+                  <JoinEventButton
+                    action={event.isJoined ? 'Отписаться' : 'Участвовать'}
+                    onSuccess={refetch}
+                    eventId={event.id}
+                  />
+                )
               }
             />
           </li>

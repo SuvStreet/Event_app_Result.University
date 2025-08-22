@@ -9,7 +9,10 @@ export const Header = () => {
 
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-gray-200">
-      <Link href="/" className="flex justify-center items-center text-lg font-bold hover:opacity-80">
+      <Link
+        href="/"
+        className="flex justify-center items-center text-lg font-bold hover:opacity-80"
+      >
         <Icon icon="ic:sharp-event-note" width={32} height={32} />
         List of events
       </Link>
