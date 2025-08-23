@@ -3,12 +3,18 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { Icon } from '@iconify-icon/react'
+import { layoutConfig } from '@/shared/config'
 
 export const Header = () => {
   const { data } = useSession()
 
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-gray-200">
+    <header
+      style={{
+        height: layoutConfig.headerHeight,
+      }}
+      className="flex items-center justify-between px-6 py-4 bg-gray-200 "
+    >
       <Link
         href="/"
         className="flex justify-center items-center text-lg font-bold hover:opacity-80"

@@ -4,6 +4,7 @@ import {
   CreateEventSchema,
   FindUniqueEventSchema,
   JoinEventSchema,
+  UpdateEventSchema,
 } from '@/shared/api/schema'
 
 export const eventRouter = createTRPCRouter({
@@ -19,34 +20,59 @@ export const eventRouter = createTRPCRouter({
       isJoined: participations.some(({ userId }) => userId === user?.id),
     }))
   }),
-  findUnique: baseProcedure
-    .input(FindUniqueEventSchema)
-    .query(({ input }) => {
-      return prisma.event.findUnique({
-        where: input,
-        select: {
-          title: true,
-          description: true,
-          date: true,
-          participations: {
-            select: {
-              user: {
-                select: {
-                  name: true,
-                },
+  findUnique: baseProcedure.input(FindUniqueEventSchema).query(({ input }) => {
+    return prisma.event.findUnique({
+      where: input,
+      select: {
+        title: true,
+        description: true,
+        date: true,
+        author: {
+          select: {
+            id: true,
+          },
+        },
+        participations: {
+          select: {
+            user: {
+              select: {
+                name: true,
               },
             },
           },
         },
-      })
-    }),
+      },
+    })
+  }),
   create: baseProcedure
     .input(CreateEventSchema)
     .use(isAuth)
-    .mutation(({ input, ctx: { user } }) => {
-      return prisma.event.create({
+    .mutation(async ({ input, ctx: { user } }) => {
+      const event = await prisma.event.create({
         data: {
           authorId: user.id,
+          ...input,
+        },
+      })
+
+      await prisma.participation.create({
+        data: {
+          eventId: event.id,
+          userId: user.id,
+        },
+      })
+
+      return event
+    }),
+  update: baseProcedure
+    .input(UpdateEventSchema)
+    .use(isAuth)
+    .mutation(async ({ input }) => {
+      return prisma.event.update({
+        where: {
+          id: input.id,
+        },
+        data: {
           ...input,
         },
       })
