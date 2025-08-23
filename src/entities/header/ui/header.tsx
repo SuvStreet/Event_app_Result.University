@@ -2,8 +2,8 @@
 
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { Icon } from '@iconify-icon/react'
 import { layoutConfig } from '@/shared/config'
+import Image from 'next/image'
 
 export const Header = () => {
   const { data } = useSession()
@@ -19,7 +19,13 @@ export const Header = () => {
         href="/"
         className="flex justify-center items-center text-lg font-bold hover:opacity-80"
       >
-        <Icon icon="ic:sharp-event-note" width={32} height={32} />
+        <Image
+          src="https://api.iconify.design/ic:sharp-event-note.svg"
+          alt="icon"
+          width={32}
+          height={32}
+          priority
+        />
         List of events
       </Link>
 
