@@ -1,2 +1,2 @@
-export * from './events/new-event-layout'
+export * from './events/create-event-page'
 export * from './home/home-layout'

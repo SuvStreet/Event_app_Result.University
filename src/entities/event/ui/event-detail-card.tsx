@@ -1,16 +1,25 @@
-import type { RouterOutput } from '@/shared/provides'
+'use client'
 
-type EventDetailCardProps = NonNullable<RouterOutput['event']['findUnique']>
+import type { RouterOutput } from '@/shared/provides'
+import { ReactNode } from 'react'
+
+type EventDetailCardProps = NonNullable<RouterOutput['event']['findUnique']> & {
+  action: ReactNode
+}
 
 export const EventDetailCard = ({
   title,
   description,
   date,
   participations,
+  action,
 }: EventDetailCardProps) => {
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6 mx-4">
-      <h2 className="text-2xl font-bold mb-6">Информация о событии</h2>
+    <div className="bg-white shadow-lg rounded-2xl p-6 w-full min-w-2xl">
+      <div className="flex justify-between justify-items-center mb-6">
+        <h2 className="text-2xl font-bold">Информация о событии</h2>
+        {action}
+      </div>
 
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">
