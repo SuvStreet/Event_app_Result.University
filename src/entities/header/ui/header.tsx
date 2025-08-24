@@ -1,9 +1,11 @@
 'use client'
 
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { layoutConfig } from '@/shared/config'
 import Image from 'next/image'
+import CreateEventButton from '@/features/event-create/ui/create-event-button'
+import SignInButton from '@/features/signIn/ui/signIn-button'
 
 export const Header = () => {
   const { data } = useSession()
@@ -20,33 +22,36 @@ export const Header = () => {
         className="flex justify-center items-center text-lg font-bold hover:opacity-80"
       >
         <Image
-          src="https://api.iconify.design/ic:sharp-event-note.svg"
+          src="https://api.iconify.design/logos:nextjs-icon.svg"
           alt="icon"
           width={32}
           height={32}
           priority
         />
-        List of events
+        <span className="ml-2">NextJS</span>
       </Link>
 
       <div className="flex items-center gap-4">
         {data?.user ? (
           <>
-            <span>{data.user.name}</span>
             <button
+              className="flex items-center gap-2 cursor-pointer"
               onClick={() => signOut()}
-              className="px-4 py-2 bg-red-500 rounded hover:bg-red-600 cursor-pointer"
             >
-              Выйти
+              <span className="font-bold text-2xl">{data.user.name}</span>
+              <Image
+                src="https://api.iconify.design/ic:baseline-arrow-back.svg"
+                alt="icon"
+                width={20}
+                height={20}
+                className="rounded-full"
+                priority
+              />
             </button>
+            <CreateEventButton />
           </>
         ) : (
-          <button
-            onClick={() => signIn()}
-            className="px-4 py-2 bg-green-600 rounded hover:bg-green-700 cursor-pointer"
-          >
-            Войти
-          </button>
+          <SignInButton />
         )}
       </div>
     </header>

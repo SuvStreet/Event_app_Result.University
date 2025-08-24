@@ -23,7 +23,11 @@ export function CreateEventPage() {
 
   return (
     <EventForm
-      helperText={<p>Заполните форму для создания события</p>}
+      helperText={
+        <p className="mt-1 text-sm leading-6 text-gray-600">
+          Заполните форму для создания события
+        </p>
+      }
       onSubmit={handleSubmit}
       isPending={isPending}
     />
