@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ReactNode } from 'react'
 import z from 'zod'
+import { useRouter } from 'next/navigation'
 
 export type CreateEventValues = z.infer<typeof CreateEventSchema>
 
@@ -26,6 +27,12 @@ export const EventForm = ({
   } = useForm<CreateEventValues>({
     resolver: zodResolver(CreateEventSchema),
   })
+
+  const router = useRouter()
+
+  const handleClickCancel = () => {
+    router.back()
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -116,6 +123,7 @@ export const EventForm = ({
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+          onClick={handleClickCancel}
         >
           Отмена
         </button>

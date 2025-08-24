@@ -3,7 +3,7 @@
 import { EventDetailCard } from '@/entities'
 import EditEventButton from '@/features/event-edit/ui/edit-event-button'
 import { useTRPC } from '@/shared/provides'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 
@@ -12,7 +12,7 @@ export const EventDetailLayout = () => {
   const session = useSession()
   const trpc = useTRPC()
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading } = useSuspenseQuery(
     trpc.event.findUnique.queryOptions({ id: String(params.id) })
   )
 
